@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="src/img/favicon-32x32.png" type="image/x-icon">
+  <link rel="stylesheet" href="src/css/variaveis.css">
+  <link rel="stylesheet" href="src/css/estilos.css">
+  <link rel="stylesheet" href="src/css/responsivo.css">
+  <title>Cartões interativos</title>
+</head>
+
+<body>
+  <main>
+    <section class="cards">
+      <div class="wrapper">
+        <div class="cartao frente">
+          <img src="src/img/bg-card-front.png" alt="Parte da frente de um cartão">
+          <div class="cartao-detalhes">
+            <div>
+              <img class="logo" src="src/img/card-logo.svg" alt="Logo do cartão">
+            </div>
+            <div>
+              <p class="digitos">0000 0000 0000 0000</p>
+              <div class="container-dados">
+                <p>jane appleseed</p>
+                <span>00/00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cartao verso">
+          <img src="src/img/bg-card-back.png" alt="Parte de trás de um cartão">
+          <span class="cvv">123</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="data">
+      <form>
+        <label for="nome">cardholder name</label>
+        <input type="text" id="nome" placeholder="e.g. Jane Appleseed">
+        <span class="error"></span>
+        <label for="numero">card number</label>
+        <input type="text" id="numero" placeholder="e.g. 1234 5678 9123 0000">
+        <span class="error"></span>
+        <div class="container-input">
+          <div>
+            <label for="mes">exp. date (mm/yy)</label>
+            <div class="container-data">
+              <div>
+                <input id="mes" type="text" placeholder="MM">
+                <span class="error"></span>
+              </div>
+              <div>
+                <input id="ano" type="text" placeholder="YY">
+                <span class="error"></span>
+              </div>
+            </div>
+          </div>
+          <div class="container-cvc">
+            <label for="cvc">cvc</label>
+            <input id="cvc" type="text" placeholder="e.g. 123">
+            <span class="error"></span>
+          </div>
+        </div>
+        <button class="btn-confirmar">Confirm</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="src/js/form-validation.js"></script>
+</body>
+
+</html>

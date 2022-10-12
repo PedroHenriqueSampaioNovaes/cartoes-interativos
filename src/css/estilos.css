@@ -1,0 +1,178 @@
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url(../font/SpaceGrotesk-VariableFont_wght.ttf) format('truetype');
+}
+
+/* Estilos globais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Space Grotesk';
+}
+
+body {
+  font-size: var(--font-size-medio);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Cartões */
+.cards {
+  background-image: url('../img/bg-main-mobile.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 230px;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.cartao {
+  max-width: 300px;
+  width: 100%;
+}
+
+.cartao.verso {
+  position: absolute;
+  right: 15px;
+}
+
+.cartao.verso .cvv {
+  position: absolute;
+  top: 47%;
+  right: 12%;
+  font-size: var(--font-size-miudo-cartao);
+  color: var(--cor-texto);
+}
+
+.cartao.frente {
+  order: 1;
+  position: absolute;
+  top: 132px;
+  z-index: 1;
+}
+
+.cartao.frente .cartao-detalhes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cartao.frente .cartao-detalhes .logo {
+  width: 50px;
+}
+
+.cartao.frente .digitos {
+  color: var(--cor-texto);
+  font-size: var(--font-size-cartao-pequeno);
+  letter-spacing: 0.1rem;
+  margin-bottom: 15px;
+}
+
+.cartao.frente .container-dados {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cartao.frente .container-dados p,
+.cartao.frente .container-dados span {
+  color: var(--cor-texto);
+  font-size: var(--font-size-descricao-cartao);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+/* Formulário */
+.data {
+  margin-top: 100px;
+  padding: 0 20px;
+}
+
+.data label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: var(--font-size-cartao-pequeno);
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+.data input {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: var(--font-size-input);
+  color: var(--cor-input);
+  border: 1px solid var(--cor-opaca);
+  border-radius: 8px;
+  outline: none;
+}
+
+.data input:focus {
+  border-color: var(--cor-input-contraste);
+}
+
+.data input.error {
+  border-color: var(--cor-error);
+}
+
+.data .container-input {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+}
+
+.data .container-input .container-data {
+  display: flex;
+  gap: 10px;
+  max-width: 160px;
+}
+
+.data .container-input .container-data > input {
+  max-width: 80px;
+}
+
+.data .container-input .container-cvc {
+  flex: 1 1 80px;
+  margin-bottom: 20px;
+}
+
+.data .btn-confirmar {
+  display: block;
+  width: 100%;
+  background: var(--cor-botao);
+  color: var(--cor-texto);
+  font-size: var(--font-size-medio);
+  border-radius: 8px;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.data span.error {
+  display: none;
+  color: var(--cor-error);
+  font-size: var(--font-size-cartao-pequeno);
+  margin-top: 5px;
+}
+
+.data span.error.active {
+  display: block;
+}
