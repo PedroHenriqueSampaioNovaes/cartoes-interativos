@@ -14,6 +14,10 @@ const types = {
     regex: /^\d{2}$/,
     message: 'Just use two numbers',
   },
+  cvc: {
+    regex: /^\d{3}$/,
+    message: 'Just use three numbers',
+  },
 };
 
 function activeError(input, message) {
@@ -26,6 +30,8 @@ function activeError(input, message) {
 const form = (type) => {
   let input;
   let error = false;
+  const cardReplace = document.querySelector('.digitos');
+  const cardName = document.querySelector('.container-dados p');
 
   function validate() {
     if (type === false) return true;
@@ -38,13 +44,21 @@ const form = (type) => {
       error = true;
       return false;
     } else {
+      input.classList.remove('error');
       input.nextElementSibling.classList.remove(activeClass);
       return true;
     }
   }
 
-  function handleChange() {
+  function handleChange({ currentTarget }) {
     if (error) validate();
+
+    const cleanValue = input.value.replace(/\s+/g, '');
+    if (type === 'numero' && cleanValue.length <= 16) {
+      cardReplace.innerText = input.value;
+    }
+
+    cardName.innerText = currentTarget.value;
   }
 
   function addEvents() {
@@ -54,27 +68,40 @@ const form = (type) => {
 
   function inputCreate(target) {
     input = target;
+    addEvents();
   }
 
-  return { inputCreate, addEvents, validate };
+  return { inputCreate, validate: () => validate(input.value) };
 };
 
 const numero = form('numero');
 numero.inputCreate(document.querySelector('#numero'));
-numero.addEvents();
 
 const nome = form();
 nome.inputCreate(document.querySelector('#nome'));
-nome.addEvents();
 
 const mes = form('mes');
 mes.inputCreate(document.querySelector('#mes'));
-mes.addEvents();
 
 const ano = form('ano');
 ano.inputCreate(document.querySelector('#ano'));
-ano.addEvents();
 
-const cvc = form();
+const cvc = form('cvc');
 cvc.inputCreate(document.querySelector('#cvc'));
-cvc.addEvents();
+
+function handleSubmit(event) {
+  event.preventDefault();
+
+  if (
+    nome.validate() &&
+    numero.validate() &&
+    mes.validate() &&
+    ano.validate() &&
+    cvc.validate()
+  ) {
+    console.log('validado!');
+  }
+}
+
+const formElement = document.querySelector('form');
+formElement.addEventListener('submit', handleSubmit);
