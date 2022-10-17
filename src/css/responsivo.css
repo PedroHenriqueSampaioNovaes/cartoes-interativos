@@ -6,6 +6,11 @@
     align-items: center;
   }
 
+  .section-wrapper {
+    max-width: 435px;
+    margin: 125px auto 0;
+  }
+
   .cartao.verso {
     transform: translateX(60px);
     position: relative;
@@ -23,11 +28,6 @@
   .cartao.frente {
     position: relative;
     top: -72px;
-  }
-
-  .data {
-    max-width: 530px;
-    margin: 125px auto 0;
   }
 }
 
@@ -51,12 +51,15 @@
     gap: 30px;
   }
 
-  .data {
+  .section-wrapper {
     width: 70%;
+    margin-top: 0;
+  }
+
+  .data {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0;
   }
 
   .cartao {
@@ -95,6 +98,11 @@
     padding-left: 20%;
     max-width: 580px;
     width: 100%;
+  }
+
+  /* Regist */
+  .regist {
+    justify-content: center;
   }
 }
 

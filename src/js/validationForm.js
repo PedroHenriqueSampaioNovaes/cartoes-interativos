@@ -1,6 +1,3 @@
-const listInputs = document.querySelectorAll('.dados input');
-const activeClass = 'active';
-
 const types = {
   numero: {
     regex: [
@@ -23,9 +20,11 @@ const types = {
   },
 };
 
-const form = (input, type, changeValueTarget, maxCharacter) => {
+const validationForm = (input, type, changeValueTarget, maxCharacter) => {
+  input = document.querySelector(input);
   const targetToApplyInputValue =
     changeValueTarget && document.querySelector(changeValueTarget);
+  const activeClass = 'active';
 
   function activeError(message) {
     const span = input.nextElementSibling;
@@ -87,27 +86,4 @@ const form = (input, type, changeValueTarget, maxCharacter) => {
 
   return { validate: () => validate(input.value) };
 };
-
-const nome = form(document.querySelector('#nome'), null, '.container-dados p');
-const numero = form(
-  document.querySelector('#numero'),
-  'numero',
-  '.digitos',
-  16,
-);
-const mes = form(document.querySelector('#mes'), 'mes');
-const ano = form(document.querySelector('#ano'), 'ano');
-const cvc = form(document.querySelector('#cvc'), 'cvc', '.cvc', 3);
-
-const fields = [nome, numero, mes, ano, cvc];
-function handleSubmit(event) {
-  event.preventDefault();
-  const validation = fields.map((field) => (field.validate() ? true : false));
-
-  if (!validation.includes(false)) {
-    console.log('validado!');
-  }
-}
-
-const formElement = document.querySelector('form');
-formElement.addEventListener('submit', handleSubmit);
+export default validationForm;
