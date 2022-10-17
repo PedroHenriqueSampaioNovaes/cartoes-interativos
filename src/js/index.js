@@ -1,5 +1,5 @@
-import validationForm from './validationForm.js';
-import sendForm from './sendForm.js';
+import validationForm from './validation-form.js';
+import sendForm from './send-form.js';
 
 const nome = validationForm('#nome', null, '.container-dados p');
 const numero = validationForm('#numero', 'numero', '.digitos', 16);
