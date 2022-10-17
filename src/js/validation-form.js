@@ -1,3 +1,5 @@
+import formatData from './format-data.js';
+
 const types = {
   numero: {
     regex: [
@@ -5,6 +7,7 @@ const types = {
       /^(?:(?:[0-9][-.\s]?){4}[-.\s]?){3}(?:[0-9][-.\s]?){4}$/,
     ],
     message: ['Wrong format, numbers only', 'Numbers are missing'],
+    format: /(\d{4})(\d{4})(\d{4})(\d{4})/g,
   },
   mes: {
     regex: [/^\d{2}$/],
@@ -22,7 +25,7 @@ const types = {
 
 const validationForm = (input, type, changeValueTarget, maxCharacter) => {
   input = document.querySelector(input);
-  const targetToApplyInputValue =
+  const cardElement =
     changeValueTarget && document.querySelector(changeValueTarget);
   const activeClass = 'active';
 
@@ -61,7 +64,11 @@ const validationForm = (input, type, changeValueTarget, maxCharacter) => {
   }
 
   function alterDetailsCard() {
-    targetToApplyInputValue.innerText = input.value;
+    if (validate() && types[type] && types[type].format) {
+      cardElement.innerText = formatData(input.value, types[type].format);
+    } else {
+      cardElement.innerText = input.value;
+    }
   }
 
   let prevValueInput;
@@ -75,7 +82,7 @@ const validationForm = (input, type, changeValueTarget, maxCharacter) => {
   function handleChange() {
     if (maxCharacter) maxCharacterInput();
     if (error) validate();
-    if (targetToApplyInputValue) alterDetailsCard();
+    if (cardElement) alterDetailsCard();
   }
 
   function addEvents() {
@@ -84,6 +91,6 @@ const validationForm = (input, type, changeValueTarget, maxCharacter) => {
   }
   addEvents();
 
-  return { validate: () => validate(input.value) };
+  return { validate: () => validate() };
 };
 export default validationForm;
