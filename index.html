@@ -17,7 +17,7 @@
     <section class="cards">
       <div class="wrapper">
         <div class="cartao frente">
-          <img src="src/img/bg-card-front.png" alt="Parte da frente de um cartão">
+          <img src="src/img/bg-card-front.png" alt="Data on the front of the card">
           <div class="cartao-detalhes">
             <div>
               <img class="logo" src="src/img/card-logo.svg" alt="Logo do cartão">
@@ -32,13 +32,13 @@
           </div>
         </div>
         <div class="cartao verso">
-          <img src="src/img/bg-card-back.png" alt="Parte de trás de um cartão">
-          <span class="cvv">123</span>
+          <img src="src/img/bg-card-back.png" alt="Back of card details">
+          <span class="cvc">123</span>
         </div>
       </div>
     </section>
 
-    <section class="data">
+    <section class="section-wrapper data">
       <form>
         <label for="nome">cardholder name</label>
         <input type="text" id="nome" placeholder="e.g. Jane Appleseed">
@@ -51,27 +51,34 @@
             <label for="mes">exp. date (mm/yy)</label>
             <div class="container-data">
               <div>
-                <input id="mes" type="text" placeholder="MM">
+                <input id="mes" type="text" placeholder="MM" maxlength="2">
                 <span class="error"></span>
               </div>
               <div>
-                <input id="ano" type="text" placeholder="YY">
+                <input id="ano" type="text" placeholder="YY" maxlength="2">
                 <span class="error"></span>
               </div>
             </div>
           </div>
           <div class="container-cvc">
             <label for="cvc">cvc</label>
-            <input id="cvc" type="text" placeholder="e.g. 123">
+            <input id="cvc" type="text" placeholder="e.g. 123" maxlength="3">
             <span class="error"></span>
           </div>
         </div>
         <button class="btn-confirmar">Confirm</button>
       </form>
     </section>
+
+    <section class="section-wrapper regist">
+      <img src="src/img/icon-complete.svg" alt="confirmed registration">
+      <h2>Thank you!</h2>
+      <p>We've added your card details</p>
+      <a href="#" class="btn-continue">Continue</a>
+    </section>
   </main>
 
-  <script src="src/js/form-validation.js"></script>
+  <script type="module" src="src/js/index.js"></script>
 </body>
 
 </html>
