@@ -33,7 +33,7 @@
         </div>
         <div class="cartao verso">
           <img src="src/img/bg-card-back.png" alt="Parte de trás de um cartão">
-          <span class="cvv">123</span>
+          <span class="cvc">123</span>
         </div>
       </div>
     </section>
@@ -51,18 +51,18 @@
             <label for="mes">exp. date (mm/yy)</label>
             <div class="container-data">
               <div>
-                <input id="mes" type="text" placeholder="MM">
+                <input id="mes" type="text" placeholder="MM" maxlength="2">
                 <span class="error"></span>
               </div>
               <div>
-                <input id="ano" type="text" placeholder="YY">
+                <input id="ano" type="text" placeholder="YY" maxlength="2">
                 <span class="error"></span>
               </div>
             </div>
           </div>
           <div class="container-cvc">
             <label for="cvc">cvc</label>
-            <input id="cvc" type="text" placeholder="e.g. 123">
+            <input id="cvc" type="text" placeholder="e.g. 123" maxlength="3">
             <span class="error"></span>
           </div>
         </div>

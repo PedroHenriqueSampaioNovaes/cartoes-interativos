@@ -3,44 +3,55 @@ const activeClass = 'active';
 
 const types = {
   numero: {
-    regex: /^(?:[0-9]{4}[-.\s]?){3}[0-9]{4}$/,
-    message: 'Wrong format, numbers only',
+    regex: [
+      /^[\d\s]+$/,
+      /^(?:(?:[0-9][-.\s]?){4}[-.\s]?){3}(?:[0-9][-.\s]?){4}$/,
+    ],
+    message: ['Wrong format, numbers only', 'Numbers are missing'],
   },
   mes: {
-    regex: /^\d{2}$/,
-    message: 'Just use two numbers',
+    regex: [/^\d{2}$/],
+    message: ['Just use two numbers'],
   },
   ano: {
-    regex: /^\d{2}$/,
-    message: 'Just use two numbers',
+    regex: [/^\d{2}$/],
+    message: ['Just use two numbers'],
   },
   cvc: {
-    regex: /^\d{3}$/,
-    message: 'Just use three numbers',
+    regex: [/^\d{3}$/],
+    message: ['Just use three numbers'],
   },
 };
 
-function activeError(input, message) {
-  input.classList.add('error');
-  const span = input.nextElementSibling;
-  span.innerText = message;
-  span.classList.add(activeClass);
-}
+const form = (input, type, changeValueTarget, maxCharacter) => {
+  const targetToApplyInputValue =
+    changeValueTarget && document.querySelector(changeValueTarget);
 
-const form = (type) => {
-  let input;
+  function activeError(message) {
+    const span = input.nextElementSibling;
+    input.classList.add('error');
+    span.innerText = message;
+    span.classList.add(activeClass);
+  }
+
+  function validRegex() {
+    return types[type].regex.every((reg, i) => {
+      if (!reg.test(input.value)) {
+        activeError(types[type].message[i]);
+        return false;
+      }
+      return true;
+    });
+  }
+
   let error = false;
-  const cardReplace = document.querySelector('.digitos');
-  const cardName = document.querySelector('.container-dados p');
-
   function validate() {
     if (type === false) return true;
     if (input.value.length === 0) {
-      activeError(input, `Can't be blank`);
+      activeError(`Can't be blank`);
       error = true;
       return false;
-    } else if (types[type] && !types[type].regex.test(input.value)) {
-      activeError(input, types[type].message);
+    } else if (types[type] && !validRegex()) {
       error = true;
       return false;
     } else {
@@ -50,55 +61,50 @@ const form = (type) => {
     }
   }
 
-  function handleChange({ currentTarget }) {
-    if (error) validate();
+  function alterDetailsCard() {
+    targetToApplyInputValue.innerText = input.value;
+  }
 
+  let prevValueInput;
+  function maxCharacterInput() {
     const cleanValue = input.value.replace(/\s+/g, '');
-    if (type === 'numero' && cleanValue.length <= 16) {
-      cardReplace.innerText = input.value;
-    }
 
-    cardName.innerText = currentTarget.value;
+    if (cleanValue.length <= maxCharacter) prevValueInput = input.value;
+    else input.value = prevValueInput;
+  }
+
+  function handleChange() {
+    if (maxCharacter) maxCharacterInput();
+    if (error) validate();
+    if (targetToApplyInputValue) alterDetailsCard();
   }
 
   function addEvents() {
     input.addEventListener('blur', validate);
     input.addEventListener('input', handleChange);
   }
+  addEvents();
 
-  function inputCreate(target) {
-    input = target;
-    addEvents();
-  }
-
-  return { inputCreate, validate: () => validate(input.value) };
+  return { validate: () => validate(input.value) };
 };
 
-const numero = form('numero');
-numero.inputCreate(document.querySelector('#numero'));
+const nome = form(document.querySelector('#nome'), null, '.container-dados p');
+const numero = form(
+  document.querySelector('#numero'),
+  'numero',
+  '.digitos',
+  16,
+);
+const mes = form(document.querySelector('#mes'), 'mes');
+const ano = form(document.querySelector('#ano'), 'ano');
+const cvc = form(document.querySelector('#cvc'), 'cvc', '.cvc', 3);
 
-const nome = form();
-nome.inputCreate(document.querySelector('#nome'));
-
-const mes = form('mes');
-mes.inputCreate(document.querySelector('#mes'));
-
-const ano = form('ano');
-ano.inputCreate(document.querySelector('#ano'));
-
-const cvc = form('cvc');
-cvc.inputCreate(document.querySelector('#cvc'));
-
+const fields = [nome, numero, mes, ano, cvc];
 function handleSubmit(event) {
   event.preventDefault();
+  const validation = fields.map((field) => (field.validate() ? true : false));
 
-  if (
-    nome.validate() &&
-    numero.validate() &&
-    mes.validate() &&
-    ano.validate() &&
-    cvc.validate()
-  ) {
+  if (!validation.includes(false)) {
     console.log('validado!');
   }
 }
