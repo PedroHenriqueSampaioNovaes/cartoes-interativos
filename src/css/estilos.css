@@ -101,7 +101,7 @@ a {
 }
 
 .cartao.frente .wrapper-dados p,
-.cartao.frente .wrapper-dados .data {
+.cartao.frente .wrapper-dados .card-data {
   color: var(--cor-texto);
   font-size: var(--font-size-descricao-cartao);
   text-transform: uppercase;
