@@ -11,21 +11,13 @@
     margin: 125px auto 0;
   }
 
-  .cartao.verso {
+  .card.verse {
     transform: translateX(60px);
     position: relative;
     right: 0;
   }
 
-  .cartao.verso .verso-numero {
-    position: absolute;
-    top: 47%;
-    right: 12%;
-    font-size: var(--font-size-miudo-cartao);
-    color: var(--cor-texto);
-  }
-
-  .cartao.frente {
+  .card.front {
     position: relative;
     top: -72px;
   }
@@ -62,52 +54,27 @@
     align-items: center;
   }
 
-  .cartao {
+  .card {
     max-width: max-content;
     width: 100%;
   }
 
-  .cartao.frente {
+  .card.front {
     transform: translateX(8vw);
     order: initial;
     top: initial;
   }
 
-  .cartao.frente .cartao-detalhes {
+  .card.front .card-details {
     padding: 25px;
   }
 
-  .cartao.frente .cartao-dados-usuario .digitos {
-    letter-spacing: 0.185rem;
-    margin-bottom: 10px;
-  }
-
-  .cartao.verso {
+  .card.verse {
     transform: translateX(15vw);
-  }
-
-  .cartao.frente .wrapper-dados p,
-  .cartao.frente .wrapper-dados .card-data {
-    font-size: var(--font-size-cartao-pequeno);
-  }
-
-  /* Dados */
-  .dados {
-    align-self: center;
-    margin-top: 0;
-    padding-left: 20%;
-    max-width: 580px;
-    width: 100%;
   }
 
   /* Regist */
   .regist {
     justify-content: center;
-  }
-}
-
-@media (min-width: 980px) {
-  .cartao.frente .cartao-dados-usuario .digitos {
-    font-size: var(--font-size-medio);
   }
 }

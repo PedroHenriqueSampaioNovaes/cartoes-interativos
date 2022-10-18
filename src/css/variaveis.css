@@ -1,16 +1,15 @@
 :root {
-  --cor-error: hsl(0, 100%, 66%);
-  --cor-texto: hsl(0, 0%, 100%);
-  --cor-opaca: hsl(270, 3%, 87%);
-  --cor-input: hsl(279, 6%, 55%);
-  --cor-botao: hsl(278, 68%, 11%);
-  --cor-input-contraste: hsl(249, 99%, 64%);
+  --color-error: hsl(0, 100%, 66%);
+  --color-text: hsl(0, 0%, 100%);
+  --color-opaque: hsl(270, 3%, 87%);
+  --color-input: hsl(279, 6%, 55%);
+  --color-button: hsl(278, 68%, 11%);
+  --color-input-contrast: hsl(249, 99%, 64%);
 
-  --font-size-medio: 1.125rem; /* 18px */
-  --font-size-input: 0.889rem; /* 16px */
-  --font-size-cartao-pequeno: 0.667rem; /* 12px */
-  --font-size-miudo-cartao: 0.625rem; /* 10px */
-  --font-size-descricao-cartao: 0.44rem; /* 8px */
+  --font-size-giant: 1.75rem; /* 28px */
+  --font-size-big: 1.2rem; /* 19.2px */
 
-  --letter-spacing-pequeno: 0.1rem; /* 1.8px */
+  --font-size-label: 0.75rem; /* 12px */
+  --font-size-big-card: 0.875rem; /* 14px */
+  --font-size-small-card: 0.625rem; /* 10px */
 }
