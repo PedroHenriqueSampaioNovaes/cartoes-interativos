@@ -43,6 +43,7 @@ input {
   border-radius: 8px;
   font-weight: bold;
   outline: none;
+  margin-bottom: 20px;
 }
 
 input::placeholder {
