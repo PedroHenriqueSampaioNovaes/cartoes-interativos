@@ -46,6 +46,7 @@ const validationForm = (input, type, changeValueTarget, maxCharacter) => {
     });
   }
 
+  let valid = false;
   let error = false;
   function validate() {
     if (type === false) return true;
@@ -57,6 +58,7 @@ const validationForm = (input, type, changeValueTarget, maxCharacter) => {
       error = true;
       return false;
     } else {
+      valid = true;
       input.classList.remove('error');
       input.nextElementSibling.classList.remove(activeClass);
       return true;
@@ -64,7 +66,7 @@ const validationForm = (input, type, changeValueTarget, maxCharacter) => {
   }
 
   function alterDetailsCard() {
-    if (validate() && types[type] && types[type].format) {
+    if (valid && types[type] && types[type].format) {
       cardElement.innerText = formatData(input.value, types[type].format);
     } else {
       cardElement.innerText = input.value;
@@ -79,6 +81,11 @@ const validationForm = (input, type, changeValueTarget, maxCharacter) => {
     else input.value = prevValueInput;
   }
 
+  function handleBlur() {
+    validate();
+    if (cardElement) alterDetailsCard();
+  }
+
   function handleChange() {
     if (maxCharacter) maxCharacterInput();
     if (error) validate();
@@ -86,7 +93,7 @@ const validationForm = (input, type, changeValueTarget, maxCharacter) => {
   }
 
   function addEvents() {
-    input.addEventListener('blur', validate);
+    input.addEventListener('blur', handleBlur);
     input.addEventListener('input', handleChange);
   }
   addEvents();
