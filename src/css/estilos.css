@@ -32,6 +32,7 @@ label {
   font-weight: 600;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
+  margin-top: 20px;
 }
 
 input {
@@ -43,7 +44,6 @@ input {
   border-radius: 8px;
   font-weight: bold;
   outline: none;
-  margin-bottom: 20px;
 }
 
 input::placeholder {
