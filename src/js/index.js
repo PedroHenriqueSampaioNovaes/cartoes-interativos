@@ -1,7 +1,7 @@
 import validationForm from './validation-form.js';
 import sendForm from './send-form.js';
 
-const nome = validationForm('#nome', null, '.container-dados p');
+const nome = validationForm('#nome', null, '.wrapper-dados p');
 const numero = validationForm('#numero', 'numero', '.digitos', 16);
 const mes = validationForm('#mes', 'mes');
 const ano = validationForm('#ano', 'ano');
